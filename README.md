@@ -2,7 +2,7 @@
 
 <div align="center">
 <a href="https://arxiv.org/abs/2506.05106"><img alt="Paper" src="https://img.shields.io/badge/Paper-arxiv-green"/></a>
-<a href="https://ieeexplore.ieee.org/document/10801613"><img alt="Paper" src="https://img.shields.io/badge/Video-Bilibili-pink"/></a>
+<a href="https://www.bilibili.com/video/BV1tqT4ztE9H/?share_source=copy_web&vd_source=e8c93bf65e11cfb7621f07830fc2dd60"><img alt="Paper" src="https://img.shields.io/badge/Video-Bilibili-pink"/></a>
 </div>
 
 ## Code
@@ -27,3 +27,32 @@ The code will be released once the paper is accepted.
 
 ## Acknowledgements
 We are also inspired by [Faster](https://github.com/mit-acl/faster), and proposed ASEO (aggressive and safe exploration-oriented) trajectory in [MINCO](https://github.com/ZJU-FAST-Lab/GCOPTER.git) form. We also adopt dynamical topological graph [DTG](https://github.com/NKU-MobFly-Robotics/GVP-MREP) for planning.
+
+```
+//                 @@@@@
+//                 ##**#%@@
+//           @@@@%*-:::--+%
+//         @@%#*%#-::::=:.+@%
+//        @#=:..-#-.:::+++#@%
+//       @#:...:.:#-...:*@@%
+//     @%=........-#:++=+%@%
+//    @%- . =:.....+*-...:#@%
+//    @%: . =#......#: ... +@%
+//    @%:   -:.....:#..... :%@
+//      @*: ...... -* ..... =@%
+//       @%=:... . -= ..... +@%
+//        @@*==--::--:...  .%@%
+//        @+=++++=======--=*@%
+//       @#++++==========+@@
+//      @#++++====-=======*%
+//     %*+++===--===----===+%
+//    #*++===--=*%%%#=-=====*@
+//  *++==--+%@@%%%@%*--====#@
+// #*====-=#@        @#=--===%@
+// #*+=--+##          @@*=--=+#@
+// #*+++=*#              @%+=+++%
+// #*++=+#*                #++++*#
+// #*++=+#                  #=+++#
+// #*+++#                   %*=++*#
+// #++=*%                   #%+=++#
+```
