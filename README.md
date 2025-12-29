@@ -89,7 +89,7 @@ Since we use the simulation environment from [FALCON](https://github.com/HKUST-A
   sudo make install
 ```
 **Clone Code and Make**:
-- Note: set CUDA_NVCC_FLAGS in CMakeLists.txt under pointcloud_render package. [More information](https://arnon.dk/matching-sm-architectures-arch-and-gencode-for-various-nvidia-cards/)
+- Note: set CUDA_NVCC_FLAGS in [CMakeLists.txt](./uav_simulator/camera_sensing/pointcloud_render/CMakeLists.txt) under pointcloud_render package. [More information](https://arnon.dk/matching-sm-architectures-arch-and-gencode-for-various-nvidia-cards/)
 ```
 $ mkdir -p EDEN/src
 $ cd EDEN/src
