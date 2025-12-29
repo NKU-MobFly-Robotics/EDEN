@@ -1,0 +1,13 @@
+<launch>
+  <arg name="odometry_topic" value="/state_ukf/odom"/>
+
+  <node pkg="odom_visualization" name="odom_visualization" type="odom_visualization" output="screen">
+    <remap from="~odom" to="$(arg odometry_topic)"/>
+    <param name="color/a" value="1.0"/>
+    <param name="color/r" value="0.0"/>
+    <param name="color/g" value="0.0"/>
+    <param name="color/b" value="1.0"/>
+    <param name="covariance_scale" value="100.0"/>
+    <param name="robot_scale" value="2.0"/>
+  </node>
+</launch>

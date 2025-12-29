@@ -1,0 +1,9 @@
+<launch>
+  <node pkg="so3_disturbance_generator" name="so3_disturbance_generator" type="so3_disturbance_generator" output="screen">
+    <remap from="~odom" to="/airsim_node/drone_1/odometry"/>
+    <remap from="~noisy_odom" to="/airsim_node/drone_1/noisy_odometry"/>
+    <remap from="~correction" to="/airsim_node/drone_1/correction"/>
+    <remap from="~force_disturbance" to="/airsim_node/drone_1/force_disturbance"/>
+    <remap from="~moment_disturbance" to="/airsim_node/drone_1/moment_disturbance"/>
+  </node>
+</launch>

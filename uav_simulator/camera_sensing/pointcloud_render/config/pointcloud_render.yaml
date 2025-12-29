@@ -1,0 +1,6 @@
+pointcloud_render:
+  render_rate: 15
+  sensor_pose_rate: 30
+  inflate_radius: 0.1
+  # inflate_radius: 0.175
+  verbose: false

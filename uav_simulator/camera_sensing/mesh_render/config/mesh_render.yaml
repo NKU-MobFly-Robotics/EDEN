@@ -1,0 +1,7 @@
+mesh_render:
+  open3d_resource_path: /home/charliedog/install/Open3D/build/bin/resources
+  enable_depth: true
+  enable_color: false
+  render_rate: 15
+  verbose: false
+  
