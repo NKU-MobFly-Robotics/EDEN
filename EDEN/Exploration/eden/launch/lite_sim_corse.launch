@@ -1,0 +1,41 @@
+<launch>
+  <arg name="mode" value="uav_simulator"/>
+  <arg name="map_name" default="octa_maze"/>
+
+  <arg name="odometry_topic" value="/uav_simulator/odometry"/>
+  <arg name="sensor_pose_topic" value="/uav_simulator/sensor_pose"/>
+  <arg name="depth_image" value="/uav_simulator/depth_image"/>
+
+  <!-- Load parameter for modules -->
+  <rosparam command="load" file="$(find eden)/resource/lite_sim/uav_model_simulator.yaml"/>
+  <rosparam command="load" file="$(find eden)/resource/lite_sim/$(arg map_name).yaml"/>
+
+  <!-- <node pkg="exploration_manager" name="exploration_node" type="exploration_node" output="screen">
+    <remap from ="/odom_world" to="$(arg odometry_topic)"/>
+    <remap from ="/voxel_mapping/depth_image" to = "$(arg depth_image)"/>
+    <remap from ="/transformer/sensor_pose_topic"   to = "$(arg sensor_pose_topic)"/>
+  </node>
+
+  <node pkg="fast_planner" name="traj_server" type="traj_server" output="screen" /> -->
+
+  <!-- Launch UAV Simulator if needed -->
+  <group if="$(eval 'true' if arg('mode')=='uav_simulator' else 'false')">
+    <!-- Map Render -->
+    <rosparam command="load" file="$(find pointcloud_render)/config/pointcloud_render_corse.yaml"/>
+    <rosparam command="load" file="$(find mesh_render)/config/mesh_render.yaml"/>
+    <node pkg="map_render" name="map_render_node" type="map_render_node" output="screen" />
+
+    <!-- Odometry Generator -->
+    <node pkg="poscmd_2_odom" name="poscmd_2_odom" type="poscmd_2_odom" output="screen">
+      <remap from="~command" to="/planning/pos_cmd"/>
+      <remap from="~odometry" to="$(arg odometry_topic)"/>
+    </node>
+
+    <!-- Robot Visualier -->
+    <node pkg="odom_visualization" name="odom_visualization" type="odom_visualization" output="screen">
+      <remap from="~odometry" to="$(arg odometry_topic)"/>
+    </node>
+  </group>
+  <!-- <node type="rviz" name="rviz" pkg="rviz" args="-d $(find exploration_manager)/config/rviz.rviz" /> -->
+
+</launch>

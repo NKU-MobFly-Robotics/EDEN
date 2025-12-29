@@ -1,0 +1,25 @@
+uav_model:
+  dynamics_parameters:
+    max_linear_velocity: 6.0
+    max_linear_acceleration: 9.0
+    max_yaw_velocity: 1.57079632679     # 90 deg / s
+    max_yaw_acceleration: 1.57079632679 # 90 deg / s^2
+
+  sensing_parameters:
+    camera_intrinsics:
+      fx: 205.46963709898583
+      fy: 205.46963709898583
+      cx: 320.5
+      cy: 240.5
+    image_width: 640
+    image_height: 480
+    min_depth: 0.1
+    max_depth: 5.0
+    fov:
+      horizontal: 1.570796327 # 2 * atan(0.5 * image_width / fx) 
+      vertical: 1.28700222    # 2 * atan(0.5 * image_height / fy)
+      
+      # RealSense D435 depth camera, Depth Field of View (FOV): 87° × 58°
+      # https://www.intelrealsense.com/depth-camera-d435/
+      # horizontal: 1.518436449
+      # vertical: 0.994837673

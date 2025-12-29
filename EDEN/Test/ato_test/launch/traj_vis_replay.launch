@@ -1,0 +1,73 @@
+<launch>
+
+    <node name="traj_gain_test" pkg="ato_test" type="traj_vel_vis" output="screen">
+        <param name="VelMax" value="2.0"/>
+        <remap from="odomshow" to="/uav_simulator/odometry"/>
+        <!-- <remap from="odomshow" to="/mavros/local_position/odom"/> -->
+        <remap from="/camera/image/compressed" to="/camera/color/image_raw/compressed_throttle"/>
+
+        
+    </node>
+
+    <node name="map_pcl_node" pkg="map_visualization" type="map_pcl_node" output="screen">
+        <remap from="/makers" to="/eden_demo/block_map/voxvis"/>
+        <param name="MinZ" value="-0.1" />
+        <param name="MaxZ" value="8.5" />
+        <param name="MinY" value="-20.0" />
+        <param name="MaxY" value="20.0" />
+        <param name="MinX" value="-20.0" />
+        <param name="MaxX" value="20.0" />
+    </node>
+
+
+    <node name="eden_demo" pkg="eden" type="eden_node" output="screen">
+        <rosparam command="load" file="$(find block_map_lite)/color/Paranoid.yaml" />
+        <!-- <rosparam command="load" file="$(find eden)/resource/eden_real1_pearorchard_low2.yaml" /> -->
+        <rosparam command="load" file="$(find eden)/resource/eden_sim_city_lite_low.yaml" />
+        <rosparam command="load" file="$(find block_map_lite)/color/color_id.yaml" />
+
+        <remap from="/odom" to="/uav_simulator/odometry"/>
+        <remap from="/vi_odom" to="/uav_simulator/sensor_odom"/>
+        <remap from="/depth" to="/uav_simulator/depth_image"/>
+        <remap from="/block_map/caminfo" to="/map_render_node/camera_info"/>
+        
+        <!-- <remap from="/eden_demo/MR_DTG/Graph" to="/eden_demo/Frontier/dtgeee"/>
+        <remap from="/eden_demo/Frontier/grid" to="/eden_demo/Frontier/eee"/>
+        <remap from="/odom" to="/mavros/local_position/odom"/>
+        <remap from="/vi_odom" to="/mavros/local_position/odom"/>
+        <remap from="/depth" to="/camera/depth/image_rect_raw_throttle"/>
+        <remap from="/block_map/caminfo" to="/camera/depth/camera_info"/> -->
+    </node>
+
+  <!-- <arg name="map_name" default="darpa_tunnel"/> -->
+  <arg name="map_name" default="city"/>
+  <arg name="odometry_topic" value="/uav_simulator/odometry"/>
+  <arg name="sensor_pose_topic" value="/uav_simulator/sensor_pose"/>
+  <arg name="depth_image" value="/uav_simulator/depth_image"/>
+
+  <!-- Load parameter for modules -->
+  <rosparam command="load" file="$(find eden)/resource/lite_sim/uav_model_simulator.yaml"/>
+  <rosparam command="load" file="$(find eden)/resource/lite_sim/$(arg map_name).yaml"/>
+
+    <rosparam command="load" file="$(find pointcloud_render)/config/pointcloud_render.yaml"/>
+    <rosparam command="load" file="$(find mesh_render)/config/mesh_render.yaml"/>
+    <node pkg="map_render" name="map_render_node" type="map_render_node" output="screen" />
+
+    <!-- Odometry Generator -->
+    <!-- <node pkg="poscmd_2_odom" name="poscmd_2_odom" type="poscmd_2_odom" output="screen">
+      <remap from="~command" to="/planning/pos_cmd"/>
+      <remap from="~odometry" to="$(arg odometry_topic)"/>
+    </node> -->
+
+    <!-- Robot Visualier -->
+    <node pkg="odom_visualization" name="odom_visualization" type="odom_visualization" output="screen">
+      <remap from="~odometry" to="$(arg odometry_topic)"/>
+    </node>
+
+
+    <node name="rvizvisualisation" pkg="rviz" type="rviz" output="screen" args="-d $(find ato_test)/rviz/traj_viz_replan_city.rviz" />
+    <!-- <node name="rvizvisualisation" pkg="rviz" type="rviz" output="screen" args="-d $(find ato_test)/rviz/traj_viz_replan_l.rviz" /> -->
+    <!-- <node name="rvizvisualisation" pkg="rviz" type="rviz" output="screen" args="-d $(find ato_test)/rviz/traj_viz_replan_m.rviz" /> -->
+    <!-- <node name="rvizvisualisation" pkg="rviz" type="rviz" output="screen" args="-d $(find ato_test)/rviz/traj_viz_replan_d.rviz" /> -->
+
+</launch>

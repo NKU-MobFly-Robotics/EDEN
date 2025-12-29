@@ -1,0 +1,38 @@
+<launch>
+
+    <node name="traj_gain_test" pkg="ato_test" type="traj_vel_vis" output="screen">
+        <param name="VelMax" value="2.0"/>
+        <!-- <remap from="odomshow" to="/mavros/local_position/odom"/> -->
+        <remap from="odomshow" to="/real0_bridge_exp_tcp_real/single_odom"/>
+    </node>
+
+    <node name="map_pcl_node" pkg="map_visualization" type="map_pcl_node" output="screen">
+        <!-- <remap from="/makers" to="/eden_demo/block_map/voxvis"/> -->
+        <remap from="/makers" to="/real0_bridge_exp_tcp_real/UAV_markers"/>
+        <param name="MinZ" value="-0.2" />
+        <param name="MaxZ" value="2.8" />
+        <param name="MinY" value="-11.0" />
+        <param name="MaxY" value="10.0" />
+        <param name="MinX" value="-20.0" />
+        <param name="MaxX" value="22.0" />
+    </node>
+
+
+    <!-- <node name="traj_exc_node" pkg="ato_test" type="traj_exc_run" output="screen">
+        <rosparam command="load" file="$(find ato_test)/resource/traj_branch_test.yaml" />
+        <remap from="/trajectory_cmd" to="/Murder/Traj"/>
+    </node>
+    <include file="$(find murder)/launch/rotors_sim.launch">
+        <arg name="world" value="pillars" />
+        <arg name="gui" value="true" />
+        <arg name="waypoint_x" value="0.0" />
+        <arg name="waypoint_y" value="0.0" />
+        <arg name="waypoint_z" value="1.0" />
+        <arg name="odom_topic" value="/ground_truth/odometry" />
+    </include> -->
+    <!-- <node name="rvizvisualisation1" pkg="rviz" type="rviz" output="screen" args="-d $(find ato_test)/rviz/traj_viz.rviz" /> -->
+<!-- <node pkg="rosbag" type="record" name="bag_record" args="
+        /move_base_simple/goal
+        /initialpose
+        -o /home/charliedog/rosprojects/DoomSea/cmd.bag"/> -->
+</launch>

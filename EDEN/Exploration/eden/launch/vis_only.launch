@@ -1,0 +1,10 @@
+<launch>
+
+    <node name="map_pcl_node" pkg="map_visualization" type="map_pcl_node" output="screen">
+        <remap from="/makers" to="/real0_bridge_exp_tcp_real/UAV_markers"/>
+        <param name="MinZ" value="-0.2" />
+        <param name="MaxZ" value="3.0" />
+    </node>
+    <!-- <node name="rvizvisualisation" pkg="rviz" type="rviz" output="screen" args="-d $(find eden)/rviz/eden_demo.rviz" /> -->
+
+</launch>

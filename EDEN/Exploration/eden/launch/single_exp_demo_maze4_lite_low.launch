@@ -1,0 +1,53 @@
+<launch>
+
+    <node name="eden_demo" pkg="eden" type="eden_node" output="screen">
+        <rosparam command="load" file="$(find block_map_lite)/color/Paranoid.yaml" />
+        <rosparam command="load" file="$(find eden)/resource/eden_sim_maze4_lite_low.yaml" />
+        <rosparam command="load" file="$(find block_map_lite)/color/color_id.yaml" />
+        <remap from="/depth" to="/firefly/vi_sensor/camera_depth/depth/disparity"/>
+        <remap from="/odom" to="/firefly/ground_truth/odometry"/>
+        <remap from="/vi_odom" to="/firefly/vi_sensor/ground_truth/odometry"/>
+        <remap from="/block_map/caminfo" to="/firefly/vi_sensor/camera_depth/depth/camera_info"/>
+
+        <!-- <remap from="/odom" to="/uav_simulator/odometry"/>
+        <remap from="/vi_odom" to="/uav_simulator/sensor_odom"/>
+        <remap from="/depth" to="/uav_simulator/depth_image"/>
+        <remap from="/block_map/caminfo" to="/map_render_node/camera_info"/> -->
+
+    </node>
+
+    <node name="traj_exc_node" pkg="traj_exc" type="traj_exc_node" output="screen">
+        <rosparam command="load" file="$(find eden)/resource/eden_sim_maze4_lite_low.yaml" />
+        <!-- <remap from="/odom" to="/firefly/ground_truth/odometry"/> -->
+        <remap from="/trajectory_cmd" to="/eden_demo/Planner/Traj"/>
+
+        <remap from="/odom" to="/uav_simulator/odometry"/>
+
+    </node>
+
+    <!-- <include file="$(find eden)/launch/rotors_sim.launch">
+        <arg name="world" value="maze4" />
+        <arg name="gui" value="true" />
+        <arg name="waypoint_x" value="0.0" />
+        <arg name="waypoint_y" value="0.0" />
+        <arg name="waypoint_z" value="1.0" />
+        <arg name="odom_topic" value="/ground_truth/odometry" />
+    </include> -->
+
+    <include file="$(find eden)/launch/lite_sim.launch">
+        <arg name="map_name" value="maze4" />
+
+    </include>
+    <node name="map_pcl_node" pkg="map_visualization" type="map_pcl_node" output="screen">
+        <remap from="/makers" to="/eden_demo/block_map/voxvis"/>
+        <param name="MinZ" value="-0.2" />
+        <param name="MaxZ" value="3.0" />
+    </node>
+    <!-- <node name="rvizvisualisation" pkg="rviz" type="rviz" output="screen" args="-d $(find eden)/rviz/eden_demo.rviz" /> -->
+    <node name="rvizvisualisation" pkg="rviz" type="rviz" output="screen" args="-d $(find eden)/rviz/eden_demo_lite.rviz" />
+
+    <!-- <node pkg="rosbag" type="record" name="bag_record" args="
+        /firefly/ground_truth/odometry
+        /murder_demo/block_map/voxvis
+        -o /home/charliedog/data/High_mobility/low/proposed_maze4_low.bag"/> -->
+</launch>

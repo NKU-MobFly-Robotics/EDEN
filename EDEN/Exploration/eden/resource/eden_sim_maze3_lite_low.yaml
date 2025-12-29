@@ -1,0 +1,197 @@
+Frontier/grid_scale: 3.0
+Frontier/viewpoint_thresh: 2.25
+Frontier/observe_thresh: 0.925
+Frontier/resample_duration: 0.5
+Frontier/eval_duration: 1.5
+Frontier/sample_hor_dir_num: 10
+Frontier/sample_ver_dir_num: 3
+Frontier/sample_dist_num: 2
+Frontier/sensor_type: "Depth_Camera"
+Frontier/samp_free_thresh: 15
+Frontier/FOV_hor_num: 10
+Frontier/FOV_ver_num: 6
+Frontier/cam_hor: 1.9
+Frontier/cam_ver: 1.046
+Frontier/livox_ver_low: -0.174
+Frontier/livox_ver_up: 1.308
+Frontier/ray_samp_dist1: 0.1
+Frontier/ray_samp_dist2: 0.4
+Frontier/min_vp_num: 5
+Frontier/VpSampleHorRes: 1.0
+Frontier/VpSampleRange: [3.5, 2.5, 1.25]
+Frontier/VpSampleVerRes: 0.75
+Frontier/VpSampleVerNum: 3
+Frontier/GainEnh: 1.2
+Frontier/show_frontier: true
+
+LowResMap/localgraph_sizex: 14.0
+LowResMap/localgraph_sizey: 14.0
+LowResMap/localgraph_sizez: 8.0
+LowResMap/node_x: 0.6
+LowResMap/node_y: 0.6
+LowResMap/node_z: 0.6
+LowResMap/showmap: false
+LowResMap/debug: true
+LowResMap/lambda_heu: 5.0
+LowResMap/resolution: 0.1
+LowResMap/seg_length: 3.0
+LowResMap/prune_seg_length: 6.5
+LowResMap/occ_duration: 2.0
+LowResMap/unknown_duration: 0.2
+LowResMap/corridor_expX: 3
+LowResMap/corridor_expY: 3
+LowResMap/corridor_expZ: 3
+LowResMap/show_dtg: true
+
+block_map/minX: -500.5
+block_map/minY: -500.5
+block_map/minZ: -0.2
+block_map/maxX: 500.5
+block_map/maxY: 500.5
+block_map/maxZ: 3.5
+
+block_map/blockX: 27
+block_map/blockY: 27
+block_map/blockZ: 27
+block_map/LocalBlockNumX: 9
+block_map/LocalBlockNumY: 9
+block_map/LocalBlockNumZ: 1
+block_map/resolution: 0.1
+block_map/sensor_max_range: 5.0
+block_map/FFD: false
+block_map/depth: true
+block_map/update_freq: 10.0
+block_map/show_freq: 10.0
+block_map/depth_step: 2
+block_map/CamtoBody_Quater_x: -0.5
+block_map/CamtoBody_Quater_y: 0.5
+block_map/CamtoBody_Quater_z: -0.5
+block_map/CamtoBody_Quater_w: 0.5
+block_map/CamtoBody_x: 0.0
+block_map/CamtoBody_y: 0.0
+block_map/CamtoBody_z: 0.0
+block_map/occ_max: 0.90
+block_map/occ_min: 0.20
+block_map/pro_hit_occ: 0.90
+block_map/pro_miss_free: 0.65
+block_map/statistic_v: true
+block_map/OccPath: /home/charliedog/rosprojects/High_Mobility_m/pillars.pcd
+block_map/Path: /home/charliedog/rosprojects/eden/map
+
+Exp/minX: -20.0
+Exp/minY: -20.0
+Exp/minZ: 0.0
+Exp/maxX: 20.0
+Exp/maxY: 20.0
+Exp/maxZ: 2.0
+
+Exp/robot_sizeX: 0.48
+Exp/robot_sizeY: 0.48
+Exp/robot_sizeZ: 0.3
+Exp/traj_length: 150.0
+Exp/local_path_search: 1000
+Exp/global_path_search: 3000
+Exp/strong_check_interval: 3.0
+Exp/check_duration: 3.5
+Exp/exc_duration: 0.5
+Exp/replan_duration: 1.25
+Exp/traj_replan_duration: 0.4
+Exp/takeoff_x: 0.0
+Exp/takeoff_y: 0.0
+Exp/takeoff_z: 1.0
+Exp/takeoff_yaw: 0.0
+Exp/reach_out_t: 0.1
+Exp/lambdaE: 0.3
+Exp/lambdaA: 0.5
+Exp/RobotId: 3
+Exp/UAV_id: 1
+Exp/statistic: false
+Exp/AutoTakeoff: true
+Exp/GainFactor: 0.3
+Exp/UseNearGain: false
+Exp/UseMotion: true
+Exp/UseTerminalCorridor: true
+Exp/UseDirCorridor: true
+Exp/UseCoverTrajectory: true
+Exp/VolumeTest: true
+Exp/UpdateInterval: 0.1
+
+MR_DTG/AccGain: 0.5
+MR_DTG/H_thresh: 7.0
+MR_DTG/show_edge_details: true
+MR_DTG/PlanDebug: false
+MR_DTG/YawGain: 1.75
+MR_DTG/MaintainHdists: true
+
+MotionQ/VelNum: 3
+MotionQ/VelNum: 3
+MotionQ/AccNum: 3
+MotionQ/Dt: 0.6
+MotionQ/SampleDepth: 3
+MotionQ/VisMotion: true
+
+opt/YawVel: 1.57
+opt/YawAcc: 1.57
+opt/MaxVel: 2.0
+opt/MaxAcc: 3.0
+opt/MaxJer: 40.0
+
+opt/WeiPos: 4000.0
+opt/WeiVel: 350.0
+opt/WeiAcc: 350.0
+opt/WeiJer: 50.0
+opt/WeiDy: 80.0
+opt/WeiDdy: 80.0
+opt/WeiVelFov: 500.0 #5000.0
+opt/WeiSwarm: 1000.0
+opt/WeiYawReach: 100.0
+
+opt/WeiT: 700.0
+opt/smoothingEps: 0.01
+opt/integralIntervs: 16
+opt/RelCostTol: 0.0002
+opt/AdoptCoverThresh: 0.1
+opt/SwarmAvoid: 1.0
+opt/debug: false
+
+exp_yaw/labda: 0.6
+exp_yaw/MinDt: 0.5
+exp_yaw/DSampleDir: 0.1
+exp_yaw/DSampleLength: 0.07
+exp_yaw/GainFactor: 3.0
+exp_yaw/SampleNumMax: 200
+exp_yaw/StableNumMax: 10
+exp_yaw/PlanTMax: 0.5
+exp_yaw/DownResX: 0.5
+exp_yaw/DownResY: 0.5
+exp_yaw/DownResZ: 0.5
+
+Test/StartX: 7.5
+Test/StartY: 7.5
+Test/StartZ: 1.0
+Test/EndX: -7.5
+Test/EndY: -7.5
+Test/EndZ: 1.0
+Test/I: 0
+Test/State: 0
+
+Computation/dir: /home/charliedog/data/maze3/pro
+Computation/data_num: 0
+
+# Computation/data_name0: success_plan
+# Computation/data_name1: fail_plan
+# Computation/data_name2: target_plan
+# Computation/data_name3: traj_plan
+# Computation/data_name4: yaw_plan
+# Computation/data_name5: cover_plan
+# Computation/data_name4: corridor_plan
+# Computation/data_name5: tsp_plan
+
+Computation/vdata_num: 7
+Computation/vdata_name0: volume
+Computation/vdata_name1: traj_total
+Computation/vdata_name2: vel_mean
+Computation/vdata_name3: target_plan
+Computation/vdata_name4: corridor_plan
+Computation/vdata_name5: traj_plan
+Computation/vdata_name6: mem
