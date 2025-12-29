@@ -167,7 +167,7 @@ block_map/maxZ: 3.5
 
 
 ## 5. Acknowledgements
-We use the simulator from [FLACON](https://github.com/HKUST-Aerial-Robotics/FALCON.git). We use [RipNeon](https://github.com/NKU-MobFly-Robotics/RipNeon.git)(coming soon) for mapping. We use dynamical topological graph (DTG) from [GVP-MREP](https://github.com/NKU-MobFly-Robotics/GVP-MREP.git) for exploration planning. Our ASEO trajectory is inspired by [FASTER](https://github.com/mit-acl/faster.git) and uses the form of [MINCO](https://github.com/ZJU-FAST-Lab/GCOPTER.git).
+We use the simulator from [FALCON](https://github.com/HKUST-Aerial-Robotics/FALCON.git). We use [RipNeon](https://github.com/NKU-MobFly-Robotics/RipNeon.git)(coming soon) for mapping. We use dynamical topological graph (DTG) from [GVP-MREP](https://github.com/NKU-MobFly-Robotics/GVP-MREP.git) for exploration planning. Our ASEO trajectory is inspired by [FASTER](https://github.com/mit-acl/faster.git) and uses the form of [MINCO](https://github.com/ZJU-FAST-Lab/GCOPTER.git).
 
 Please star our work, we really appreciate your support.  
 <p align="left">
