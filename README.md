@@ -29,19 +29,19 @@
 
 Simulations:
 <p align="middle">
-  <img src="eden_gif/takeoff.gif" width = "324" height = "216"/>
-  <img src="eden_gif/pro_co_gif.gif" width = "432" height = "216"/>
+  <img src="eden_gif/takeoff.gif" width = "324" height = "200"/>
+  <img src="eden_gif/pro_co_gif.gif" width = "400" height = "200"/>
   </p>
 
 <p align="middle">
-  <img src="eden_gif/pro_maze_gif.gif" width = "432" height = "243"/>
-  <img src="eden_gif/city_gif.gif" width = "432" height = "243"/>  
+  <img src="eden_gif/pro_maze_gif.gif" width = "400" height = "225"/>
+  <img src="eden_gif/city_gif.gif" width = "400" height = "225"/>  
 </p>
 
 Real-World Experiments:
 <p align="middle">
-  <img src="eden_gif/courtyard_gif.gif" width = "432" height = "243"/>
-  <img src="eden_gif/park_gif.gif" width = "432" height = "243"/>
+  <img src="eden_gif/courtyard_gif.gif" width = "400" height = "225"/>
+  <img src="eden_gif/park_gif.gif" width = "400" height = "225"/>
 </p>
 
 
