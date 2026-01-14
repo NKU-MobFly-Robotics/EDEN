@@ -10,6 +10,7 @@
 <a href="https://github.com/littlelittle-bo" target="_black">Haobo Xi</a>
 
 <!-- <a href="https://ieeexplore.ieee.org/document/3639779"><img alt="Paper" src="https://img.shields.io/badge/Paper-IEEE-blue"/></a> -->
+<a href="https://ieeexplore.ieee.org/document/11339475"><img alt="arxiv" src="https://img.shields.io/badge/Paper-IEEE-blue"/></a>
 <a href="https://arxiv.org/pdf/2506.05106"><img alt="arxiv" src="https://img.shields.io/badge/Paper-arxiv-green"/></a>
 <a href="https://www.bilibili.com/video/BV1tqT4ztE9H"><img alt="Bilibili" src="https://img.shields.io/badge/Video-Bilibili-pink"/></a>
 <a href="https://youtu.be/TLb6eQBsJmM?si=eYASBQ_5XkOcHvee"><img alt="Youtube" src="https://img.shields.io/badge/Video-Youtube-red"/></a>
@@ -45,16 +46,19 @@ Real-World Experiments:
 </p>
 
 
-<!-- Please cite our paper if this work helps your research:
+Please cite our paper if this work helps your research:
 ```
-@INPROCEEDINGS{10801613,
-  author={Dong, Qianli and Xi, Haobo and Zhang, Shiyong and Bi, Qingchen and Li, Tianyi and Wang, Ziyu and Zhang, Xuebo},
-  booktitle={2024 IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS)}, 
-  title={Fast and Communication-Efficient Multi-UAV Exploration Via Voronoi Partition on Dynamic Topological Graph}, 
-  year={2024},
-  pages={14063-14070},
-  doi={10.1109/IROS58592.2024.10801613}}
-``` -->
+@ARTICLE{11339475,
+  author={Dong, Qianli and Zhang, Xuebo and Zhang, Shiyong and Wang, Ziyu and Ma, Zhe and Xi, Haobo},
+  journal={IEEE Transactions on Industrial Electronics}, 
+  title={EDEN: Efficient Dual-Layer Exploration Planning for Fast UAV Autonomous Exploration in Large 3-D Environments}, 
+  year={2026},
+  volume={},
+  number={},
+  pages={1-11},
+  keywords={Routing;Planning;Trajectory;Trajectory planning;Computational efficiency;Safety;Autonomous aerial vehicles;Space exploration;Three-dimensional displays;Robots;Autonomous exploration;motion planning;trajectory planning},
+  doi={10.1109/TIE.2025.3639779}}
+```
 ## 2. Setup
 This work is developed in Ubuntu 20.04, [ROS noetic](http://wiki.ros.org/noetic/Installation/Ubuntu).
 
