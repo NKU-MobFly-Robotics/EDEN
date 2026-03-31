@@ -446,7 +446,7 @@ bool SingleExp::EdenPlan(){
     if(plan_res == 2){
         double dp = (ps - EROI_.EROI_[tar_stem.first].center_ - EROI_.vps_[tar_stem.second].head(3)).norm();
         double dyaw = abs(EROI_.YawDiff(EROI_.vps_[tar_stem.second](3), ys));
-        if(!EROI_.StrongCheckViewpoint(tar_stem.first, tar_stem.second, true) || (dp < LRM_.node_scale_.norm() && dyaw < 0.25)){
+        if(!EROI_.StrongCheckViewpoint(tar_stem.first, tar_stem.second, true) || (dp < LRM_.node_scale_.norm() * 3.0 && dyaw < 0.75)){
             DTG_.RemoveVp(tar_stem.first, tar_stem.second);
             cout<<"too close branch!"<<endl;
             return false;
@@ -527,7 +527,7 @@ bool SingleExp::EdenPlan(){
     else if(plan_res == 3){
         double dp = (ps - EROI_.EROI_[tar_norm.first].center_ - EROI_.vps_[tar_norm.second].head(3)).norm();
         double dyaw = abs(EROI_.YawDiff(EROI_.vps_[tar_norm.second](3), ys));
-        if(!EROI_.StrongCheckViewpoint(tar_norm.first, tar_norm.second, true) || (dp < LRM_.node_scale_.norm() && dyaw < 0.25)){
+        if(!EROI_.StrongCheckViewpoint(tar_norm.first, tar_norm.second, true) || (dp < LRM_.node_scale_.norm() * 3.0 && dyaw < 0.75)){
             DTG_.RemoveVp(tar_norm.first, tar_norm.second);
             cout<<"too close norm!"<<endl;
             return false;
@@ -831,8 +831,8 @@ int SingleExp::ViewPointsCheck(const double &t){
     double dp, dyaw;
     dyaw = abs(EROI_.YawDiff(yaw_, tar_pose(3)));
     dp = (tar_pose.head(3) - p_).norm();
-    if(!EROI_.StrongCheckViewpoint(target_f_id_, target_v_id_, true) || (dp < LRM_.node_scale_.norm() && dyaw < 0.25)){
-        cout<<"too close:"<<(dp < LRM_.node_scale_.norm() && dyaw < 0.25)<<endl;
+    if(!EROI_.StrongCheckViewpoint(target_f_id_, target_v_id_, true) || (dp < LRM_.node_scale_.norm() * 3.0 && dyaw < 0.75)){
+        cout<<"too close:"<<(dp < LRM_.node_scale_.norm() * 3.0 && dyaw < 0.75)<<endl;
         if(target_f_id_ >= 0 && target_f_id_ < EROI_.EROI_.size() && 0 <= target_v_id_ && target_v_id_ < EROI_.EROI_[target_f_id_].local_vps_.size())
             DTG_.RemoveVp(target_f_id_, target_v_id_);
             cout<<"erase vp:"<<target_f_id_<<"  "<<target_v_id_<<endl;
