@@ -894,7 +894,10 @@ void LowResMap::SetNodeStatesBf(vector<Eigen::Vector3d> &new_free_nodes){
 int LowResMap::PathCheck(list<Eigen::Vector3d> &path, bool allow_uknown){
     // ROS_WARN("PathCheck0");
     for(auto &p : path){
-        if(!InsideLocalMap(p)) return 1;
+        if(!InsideLocalMap(p)) continue;
+        if(!IsFeasible(p, allow_uknown)) {
+            return 2;
+        }
     }
     // ROS_WARN("PathCheck1");
 
