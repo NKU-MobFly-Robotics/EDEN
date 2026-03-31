@@ -603,7 +603,7 @@ inline bool EroiGrid::GetVpPos(const int &f_idx, const int &v_id, Eigen::Vector3
     if(f_idx < 0 || f_idx >= EROI_.size() || v_id < 0 || v_id >= samp_total_num_) return false;
     if(must_exploring && EROI_[f_idx].f_state_ != 1) return false;
     v_pos = vps_[v_id].head(3);
-    v_pos += EROI_[v_id].center_;
+    v_pos += EROI_[f_idx].center_;
     return true;
 }
 
