@@ -898,6 +898,19 @@ void EroiGrid::LazySampleCallback(const ros::TimerEvent &e){
 
 bool EroiGrid::StrongCheckViewpoint(const int &f_id, const int &v_id, const bool &allow_unknown){
     Eigen::Vector4d vp_pose;
+
+    // bbx intersect with local bbx
+    for(int dim = 0; dim < 3; dim++){
+        if(EROI_[f_id].up_(dim) + 0.05 < LRM_->local_map_lowbd_(dim) || EROI_[f_id].down_(dim) + 0.05 > LRM_->local_map_upbd_(dim)){
+            return true;
+        }
+    }
+    if(!LRM_->InsideLocalMap(vp_pose.head(3))) return true;
+
+
+
+
+    // if(!LRM_->InsideLocalMap(EROI_[f_id].center_)) return true;
     if(EROI_[f_id].f_state_ >= 2 || EROI_[f_id].local_vps_[v_id] == 2) return false;
     vp_pose = vps_[v_id];
     vp_pose.head(3) += EROI_[f_id].center_;

@@ -544,7 +544,7 @@ bool SingleExp::EdenPlan(){
             exc_traj_ = TrajOpt_.norm_traj_;
             run_branch_ = false;
             traj_start_t_ = hand_t;
-            replan_t_ = min(replan_duration_, max(exc_traj_.getTotalDuration() - 0.15, 0.0)) + traj_start_t_;
+            replan_t_ = min(replan_duration_ * 2.5, max(exc_traj_.getTotalDuration() - 0.15, 0.0)) + traj_start_t_;
             if(TrajOpt_.main_traj_[0].getCoeffMat().col(4).head(3).norm() < TrajOpt_.upboundVec_[0] * 0.6){
                 traj_replan_t_ = traj_start_t_ + traj_replan_duration_;
             }
