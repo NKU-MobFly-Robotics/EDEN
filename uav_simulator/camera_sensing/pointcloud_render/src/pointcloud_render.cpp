@@ -32,9 +32,9 @@ void PointcloudRender::initialize(ros::NodeHandle &nh) {
   pub_depth = nh.advertise<sensor_msgs::Image>("/uav_simulator/depth_image", 1000);
   pub_color = nh.advertise<sensor_msgs::Image>("/uav_simulator/depth_image_color", 1000);
   pub_pose = nh.advertise<geometry_msgs::TransformStamped>("/uav_simulator/sensor_pose", 1000);
+  pub_odom = nh.advertise<nav_msgs::Odometry>("/uav_simulator/sensor_odom", 1000);
   pub_pcl_wolrd = nh.advertise<sensor_msgs::PointCloud2>("rendered_pcl", 1);
   pub_caminfo = nh.advertise<sensor_msgs::CameraInfo>("camera_info", 10);
-  pub_odom = nh.advertise<nav_msgs::Odometry>("/uav_simulator/sensor_odom", 1000);
 
   local_sensing_timer =
       nh.createTimer(ros::Duration(1.0 / render_rate), &PointcloudRender::renderCallback, this);
@@ -142,7 +142,18 @@ void PointcloudRender::pubCameraPose(const ros::TimerEvent &event) {
   camera_pose.transform.rotation.y = cam2world_quat.y();
   camera_pose.transform.rotation.z = cam2world_quat.z();
   camera_pose.transform.rotation.w = cam2world_quat.w();
-  camera_pose_ = camera_pose;
+
+  // nav_msgs::Odometry odom;
+  // odom.header = _odom.header;
+  // odom.pose.pose.position.x = camera_pose.transform.translation.x;
+  // odom.pose.pose.position.y = camera_pose.transform.translation.y;
+  // odom.pose.pose.position.z = camera_pose.transform.translation.z;
+  // odom.pose.pose.orientation.x = cam2world_quat.x();
+  // odom.pose.pose.orientation.y = cam2world_quat.y();
+  // odom.pose.pose.orientation.z = cam2world_quat.z();
+  // odom.pose.pose.orientation.w = cam2world_quat.w();
+
+  pub_pose.publish(camera_pose);
 }
 
 void PointcloudRender::renderCallback(const ros::TimerEvent &event) {
@@ -192,7 +203,7 @@ void PointcloudRender::renderDepthPointcloud() {
   localMap.is_dense = true;
 
   pcl::toROSMsg(localMap, local_map_pcl);
-  local_map_pcl.header.frame_id = "world";
+  local_map_pcl.header.frame_id = "/map";
   local_map_pcl.header.stamp = last_odom_stamp;
 
   pub_pcl_wolrd.publish(local_map_pcl);
@@ -234,10 +245,8 @@ void PointcloudRender::renderDepthImage() {
   out_msg.encoding = sensor_msgs::image_encodings::TYPE_32FC1;
   out_msg.image = depth_mat.clone();
   pub_depth.publish(out_msg.toImageMsg());
-  camera_pose_.header.stamp = last_odom_stamp;
-
-  pub_pose.publish(camera_pose_);
   pub_odom.publish(_odom);
+
   cv::Mat adjMap;
   // depth_mat.convertTo(adjMap,CV_8UC1, 255 / (max-min), -min);
   depth_mat.convertTo(adjMap, CV_8UC1, 255 / 13.0, -min);

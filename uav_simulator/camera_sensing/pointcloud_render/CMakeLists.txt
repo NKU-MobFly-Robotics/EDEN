@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 2.8.12)
+cmake_minimum_required(VERSION 2.8.3)
 project(pointcloud_render)
 
 set(CMAKE_BUILD_TYPE "Release")
@@ -9,12 +9,11 @@ set(CMAKE_CXX_FLAGS_RELEASE "-O3 -Wall")
 
 # if(ENABLE_CUDA)
 # GPU accelerated
-
 find_package(CUDA REQUIRED)
 set(CUDA_NVCC_FLAGS ${CUDA_NVCC_FLAGS};-O3 -use_fast_math)
 set(CUDA_NVCC_FLAGS "${CUDA_NVCC_FLAGS}" "--ptxas-options=-v")
-set(CUDA_NVCC_FLAGS -gencode arch=compute_86,code=sm_86;) # Titan Xp
-# set(CUDA_NVCC_FLAGS -gencode arch=compute_90,code=sm_90;) # 4090, sm_86 or sm_89 (CUDA 11.8+)
+set(CUDA_NVCC_FLAGS -gencode arch=compute_75,code=sm_75;) # Titan Xp
+# set(CUDA_NVCC_FLAGS -gencode arch=compute_86,code=sm_86;) # 4090, sm_86 or sm_89 (CUDA 11.8+)
 set(CUDA_PROPAGATE_HOST_FLAGS OFF)
 
 find_package(OpenCV REQUIRED)

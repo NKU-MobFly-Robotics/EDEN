@@ -1,1 +1,0 @@
-# These bags are mainly for multi-UAV planning. Their key functions are not used in EDEN.

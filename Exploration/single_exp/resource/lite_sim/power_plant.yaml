@@ -1,0 +1,36 @@
+map_config:
+  map_file: "power_plant.pcd"
+  map_dimension: 3
+
+  # Initial position and orientation of the robot under the world frame
+  init_x: -6.0
+  init_y: 0.0
+  init_z: 0.0
+  init_yaw: 0.0
+
+  map_size:
+    # Size of the map in meters
+    map_min_x: -8.0
+    map_min_y: -22.0
+    map_min_z: -1.0
+    map_max_x: 8.0
+    map_max_y: 7.0
+    map_max_z: 18.0
+
+    # Size of the task bbox in meters
+    # If not set, the whole map will be used
+    box_min_x: -7.0
+    box_min_y: -21.0
+    box_min_z: 0.0
+    box_max_x: 7.0
+    box_max_y: 6.0
+    box_max_z: 15.0
+
+    # Size of the visualization bbox in meters
+    # If not set, the whole map will be used
+    vbox_min_x: -7.0
+    vbox_min_y: -21.0
+    vbox_min_z: -1.0
+    vbox_max_x: 7.0
+    vbox_max_y: 6.0
+    vbox_max_z: 15.0

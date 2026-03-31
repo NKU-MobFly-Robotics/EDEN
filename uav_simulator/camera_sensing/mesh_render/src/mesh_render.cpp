@@ -86,11 +86,11 @@ int MeshRender::initialize(ros::NodeHandle &nh) {
 
   pose_sub_ = nh.subscribe("/uav_simulator/odometry", 1, &MeshRender::odometryCallback, this);
 
-  depth_image_pub_ = nh.advertise<sensor_msgs::Image>("/uav_simulator/depth_image", 1);
-  color_image_pub_ = nh.advertise<sensor_msgs::Image>("/uav_simulator/color_image", 1);
+  depth_image_pub_ = nh.advertise<sensor_msgs::Image>("/uav_simulator/depth_image", 10);
+  color_image_pub_ = nh.advertise<sensor_msgs::Image>("/uav_simulator/color_image", 10);
   sensor_pose_pub_ = nh.advertise<geometry_msgs::TransformStamped>("/uav_simulator/sensor_pose", 1);
+  odom_pose_pub_ = nh.advertise<nav_msgs::Odometry>("/uav_simulator/sensor_odom", 1);
   pub_caminfo = nh.advertise<sensor_msgs::CameraInfo>("camera_info", 10);
-  pub_odom = nh.advertise<nav_msgs::Odometry>("/uav_simulator/sensor_odom", 1000);
 
   render_timer =
       nh.createTimer(ros::Duration(1.0 / render_rate_), &MeshRender::renderCallback, this);
@@ -229,6 +229,8 @@ void MeshRender::renderCallback(const ros::TimerEvent &event) {
     out_msg.encoding = sensor_msgs::image_encodings::BGR8;
     out_msg.image = color_mat.clone();
     color_image_pub_.publish(out_msg.toImageMsg());
+
+
   }
   sensor_msgs::CameraInfo camera_info;
   camera_info.header.stamp = latest_odometry_timestamp_;
@@ -258,8 +260,18 @@ void MeshRender::renderCallback(const ros::TimerEvent &event) {
   sensor_pose.transform.rotation.y = q_w_c_.y();
   sensor_pose.transform.rotation.z = q_w_c_.z();
 
+  // nav_msgs::Odometry odom;
+  // odom.header = sensor_pose.header;
+  // odom.pose.pose.position.x = sensor_pose.transform.translation.x;
+  // odom.pose.pose.position.y = sensor_pose.transform.translation.y;
+  // odom.pose.pose.position.z = sensor_pose.transform.translation.z;
+  // odom.pose.pose.orientation.x = q_w_c_.x();
+  // odom.pose.pose.orientation.y = q_w_c_.y();
+  // odom.pose.pose.orientation.z = q_w_c_.z();
+  // odom.pose.pose.orientation.w = q_w_c_.w();
+
   sensor_pose_pub_.publish(sensor_pose);
-  pub_odom.publish(odom_);
+  odom_pose_pub_.publish(odom_);
 }
 
 template <typename Scalar>

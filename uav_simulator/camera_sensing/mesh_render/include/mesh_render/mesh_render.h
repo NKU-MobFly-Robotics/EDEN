@@ -49,12 +49,12 @@ private:
 
   bool saveImage(const std::string &filename, const std::shared_ptr<geometry::Image> &image);
 
-  ros::Publisher color_image_pub_, depth_image_pub_, sensor_pose_pub_, pub_caminfo, pub_odom;
+  ros::Publisher color_image_pub_, depth_image_pub_, sensor_pose_pub_, odom_pose_pub_, pub_caminfo;
   ros::Subscriber pose_sub_;
 
   ros::Timer render_timer;
-  nav_msgs::Odometry odom_;
 
+  nav_msgs::Odometry odom_;
   bool enable_color_;
   bool enable_depth_;
 

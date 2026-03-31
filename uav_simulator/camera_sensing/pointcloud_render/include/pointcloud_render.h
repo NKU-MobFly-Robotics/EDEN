@@ -70,9 +70,9 @@ private:
   ros::Publisher pub_depth;
   ros::Publisher pub_color;
   ros::Publisher pub_pose;
+  ros::Publisher pub_odom;
   ros::Publisher pub_pcl_wolrd;
   ros::Publisher pub_caminfo;
-  ros::Publisher pub_odom;
 
   sensor_msgs::PointCloud2 local_map_pcl;
   sensor_msgs::PointCloud2 local_depth_pcl;
@@ -88,7 +88,6 @@ private:
   Matrix4d cam2world;
   Eigen::Quaterniond cam2world_quat;
   nav_msgs::Odometry _odom;
-  geometry_msgs::TransformStamped camera_pose_;
 
   double render_rate, sensor_pose_rate;
   double inflate_radius;

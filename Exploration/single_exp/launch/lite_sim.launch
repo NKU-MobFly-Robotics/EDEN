@@ -1,0 +1,97 @@
+<launch>
+  <arg name="mode" value="uav_simulator"/>
+  <arg name="map_name" default="octa_maze"/>
+
+  <arg name="odometry_topic" value="/uav_simulator/odometry"/>
+  <arg name="sensor_pose_topic" value="/uav_simulator/sensor_pose"/>
+  <arg name="depth_image" value="/uav_simulator/depth_image"/>
+
+  <!-- Load parameter for modules -->
+  <rosparam command="load" file="$(find single_exp)/resource/lite_sim/uav_model_simulator.yaml"/>
+  <rosparam command="load" file="$(find single_exp)/resource/lite_sim/$(arg map_name).yaml"/>
+  <arg name="map_path" value="$(find map_render)/resource/$(arg map_name).pcd"/>
+
+  <!-- Launch UAV Simulator if needed -->
+  <group if="$(eval 'true' if arg('mode')=='uav_simulator' else 'false')">
+    <!-- Map Render -->
+    <rosparam command="load" file="$(find pointcloud_render)/config/pointcloud_render.yaml"/>
+    <rosparam command="load" file="$(find mesh_render)/config/mesh_render.yaml"/>
+    <!-- Img -->
+    <!-- <node pkg="map_render" name="map_render_node" type="map_render_node" output="screen" /> -->
+
+    <node pkg="map_generator" name="map_pub" type="map_pub" output="screen"
+            args="$(arg map_path)">
+            <param name="add_boundary" value="0" />
+            <param name="is_bridge" value="0" />
+            <param name="downsample_res" value="0.01" />
+            <param name="map_offset_x" value="0.0" />
+            <param name="map_offset_y" value="0.0" />
+            <param name="map_offset_z" value="0.0" />
+    </node>
+
+    <!-- <node pkg="map_generator" name="map_pub1" type="map_pub" output="screen"
+            args="$(arg map_path)">
+            <param name="downsample_res" value="0.05" />
+            <param name="map_offset_x" value="0.0" />
+            <param name="map_offset_y" value="0.0" />
+            <param name="map_offset_z" value="0.0" />
+    </node> -->
+
+    <node pkg="local_sensing" type="opengl_lidar_render_node"
+        name="quad0_pcl_render_node" output="screen"
+        args="$(arg map_path)">
+        <remap from="~global_map" to="/map_generator/global_cloud" />
+        <remap from="~odometry" to="$(arg odometry_topic)" />
+        
+
+        <param name="drone_id" value="0.0" />
+        <param name="lidar_pitch" value="0" />
+        <param name="quadrotor_name" value="quad_0" />
+        <param name="uav_num" value="1" />
+        <param name="is_360lidar" value="1" />
+        <param name="sensing_horizon" value="40" />
+        <param name="sensing_rate" value="10.0" />
+        <param name="estimation_rate" value="10.0" />
+        <param name="polar_resolution" value="0.2" />
+        <param name="yaw_fov" value="360.0" />
+        <param name="vertical_fov" value="90.0" />
+        <param name="min_raylength" value="1.0" />
+        <param name="livox_linestep" value="1.4" />
+        <param name="curvature_limit" value="100.0" />
+        <param name="hash_cubesize" value="5.0" />
+        <param name="use_avia_pattern" value="0" />
+        <param name="use_vlp32_pattern" value="0" />
+        <param name="use_minicf_pattern" value="1" />
+        <param name="use_os128_pattern" value="0" />
+        <!-- <param name="lidar_pitch" value="90.0" /> -->
+
+        <param name="downsample_res" value="0.05" />
+
+        <param name="dynobj_enable" value="0" />
+        <param name="dynobject_size" value="0.8" />
+        <param name="dynobject_num" value="10" />
+        <param name="dyn_mode" value="2" /><!-- 0 for a=0, 1 for a=g, 2 for random walk -->
+        <param name="dyn_velocity" value="1.0" />
+
+        <param name="use_uav_extra_model" value="0" />
+
+        <!-- collision parameter -->
+        <param name="collisioncheck_enable" value="0" />
+        <param name="collision_range" value="0.3" />
+        <param name="output_pcd" value="0" />
+    </node>
+
+
+    <!-- Odometry Generator -->
+    <node pkg="poscmd_2_odom" name="poscmd_2_odom" type="poscmd_2_odom" output="screen">
+      <remap from="~command" to="/planning/pos_cmd"/>
+      <remap from="~odometry" to="$(arg odometry_topic)"/>
+    </node>
+
+    <!-- Robot Visualier -->
+    <node pkg="odom_visualization" name="odom_visualization" type="odom_visualization" output="screen">
+      <remap from="~odometry" to="$(arg odometry_topic)"/>
+    </node>
+  </group>
+
+</launch>

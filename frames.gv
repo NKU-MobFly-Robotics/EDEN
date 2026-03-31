@@ -1,0 +1,7 @@
+digraph G {
+"world" -> "sensor"[label="Broadcaster: /quad0_pcl_render_node\nAverage rate: 10000.000 Hz\nMost recent transform: 1755605646.385 ( 121.501 sec old)\nBuffer length: 0.000 sec\n"];
+edge [style=invis];
+ subgraph cluster_legend { style=bold; color=black; label ="view_frames Result";
+"Recorded at time: 1755605767.886"[ shape=plaintext ] ;
+ }->"world";
+}
