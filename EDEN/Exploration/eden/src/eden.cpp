@@ -446,7 +446,7 @@ bool SingleExp::EdenPlan(){
     if(plan_res == 2){
         double dp = (ps - EROI_.EROI_[tar_stem.first].center_ - EROI_.vps_[tar_stem.second].head(3)).norm();
         double dyaw = abs(EROI_.YawDiff(EROI_.vps_[tar_stem.second](3), ys));
-        if(!EROI_.StrongCheckViewpoint(tar_stem.first, tar_stem.second, true) || (dp < LRM_.node_scale_.norm() * 1.0 && dyaw < 0.25)){
+        if((dp < LRM_.node_scale_.norm() * 1.0 && dyaw < 0.25) || !EROI_.StrongCheckViewpoint(tar_stem.first, tar_stem.second, true)){
             DTG_.RemoveVp(tar_stem.first, tar_stem.second);
             cout<<"too close branch!"<<endl;
             return false;
@@ -831,7 +831,7 @@ int SingleExp::ViewPointsCheck(const double &t){
     double dp, dyaw;
     dyaw = abs(EROI_.YawDiff(yaw_, tar_pose(3)));
     dp = (tar_pose.head(3) - p_).norm();
-    if(!EROI_.StrongCheckViewpoint(target_f_id_, target_v_id_, true) || (dp < LRM_.node_scale_.norm() * 1.0 && dyaw < 0.25)){
+    if((dp < LRM_.node_scale_.norm() * 1.0 && dyaw < 0.25) || !EROI_.StrongCheckViewpoint(target_f_id_, target_v_id_, true)){
         cout<<"too close:"<<(dp < LRM_.node_scale_.norm() * 1.0 && dyaw < 0.25)<<endl;
         if(target_f_id_ >= 0 && target_f_id_ < EROI_.EROI_.size() && 0 <= target_v_id_ && target_v_id_ < EROI_.EROI_[target_f_id_].local_vps_.size())
             DTG_.RemoveVp(target_f_id_, target_v_id_);
